@@ -7,6 +7,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class TestUtili extends BaseClass {
 
     public static long PageLoad= 20;
@@ -31,14 +33,13 @@ public class TestUtili extends BaseClass {
     public void secletionfromdropdown(By locator, int value) {
         Select drpdwn = new Select(driver.findElement(locator));
         drpdwn.selectByIndex(value);
-        String s = driver.findElements(locator).toString();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        List<WebElement> Size=drpdwn.getOptions();
+        System.out.println("Total number of values in the dropdown is: "+Size.size());
+        for(int i=0;i<Size.size();i++){
+            System.out.println(i+". "+Size.get(i).getText());
         }
 
-        System.out.println("Chosen value is " + s);
+
     }
 
     public String doGetText(By locator) {
